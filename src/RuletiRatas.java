@@ -8,7 +8,7 @@ public class RuletiRatas {
     private int indeks;
 
     public RuletiRatas() {
-        // loob RuletiRatta isendi 36 erineva numbriga
+        // Loob RuletiRatta isendi 36 erineva numbriga
         indeks = 0;
         for (int i = 0; i <= 35; i++) {
             if (i == 0) {
@@ -16,11 +16,11 @@ public class RuletiRatas {
                 //0 on rohelist värvi
             } else {
                 if (i % 2 == 0) {
-                    //paarisarvud on punast värvi
+                    //Paarisarvud on punast värvi
                     numbrid.add(new RuletiNumber(i, 'p'));
 
                 } else {
-                    //paaritud arvud on musta värvi
+                    //Paaritud arvud on musta värvi
                     numbrid.add(new RuletiNumber(i, 'm'));
                 }
             }
@@ -33,19 +33,20 @@ public class RuletiRatas {
     public RuletiNumber veereta() throws InterruptedException {
         int veeretusteArv = (int) (Math.random() * (100 - 50) + 50); //Juhuslik arv, mitmenda elemendini indeks liigub
         for (int i = indeks; i < veeretusteArv; i++) {
-            int pärisIndeks = i % numbrid.size(); //käsitleme massiivi, kui jada mis lõppu jõudes algab otsast peale
+            int pärisIndeks = i % numbrid.size(); //Käsitleme massiivi, kui jada mis lõppu jõudes algab otsast peale
             for (int j = pärisIndeks; j < pärisIndeks + 7; j++) {
                 int temp = j % numbrid.size();
                 System.out.print(numbrid.get(temp));
+                //See tsükkel tekitab n-ö keerutamise effekti, väljastades ükshaaval rulettiratta edasi liikumist.
             }
             System.out.println();
             System.out.println(" |");
 
-            Thread.sleep(200);
+            Thread.sleep(200); // Paneb iga väljastuse tagant programmi hetkeks pausile, et tekitada animeerimise effekti.
 
             indeks = pärisIndeks;
         }
-        return numbrid.get(indeks);//tagastab võidunumbri
+        return numbrid.get(indeks);//Tagastab võidunumbri
 
     }
 

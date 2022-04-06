@@ -8,7 +8,7 @@ public class Peaklass {
         System.out.println(saldo.getsaldoJääk());
         while (mängib) {
             if (saldo.getsaldoJääk() == 0) {
-                //kui raha on nullis, siis lüpetab mängu
+                //Kui raha on nullis, siis lüpetab mängu
                 JOptionPane.showMessageDialog(null, "Kaotasid kõik, pere lahkus Su juurest");
                 break;
             }
@@ -16,23 +16,23 @@ public class Peaklass {
 
             int panustatav = Integer.parseInt(JOptionPane.showInputDialog(null, "Sisesta number mille peale panustasid", "0-36"));
             while (panustatav < 0 || panustatav > 36) {
-                //kui panustatavat numbrit pole ruletirattal, siis küsib uuesti
+                //Kui panustatavat numbrit pole ruletirattal, siis küsib uuesti
                 panustatav = Integer.parseInt(JOptionPane.showInputDialog(null, "Sisesta uuesti", "0-36"));
             }
 
             RuletiNumber võitja = ratas.veereta();
-            //loosib välja võidunumbri
+            //Loosib välja võidunumbri
 
             if (võitja.getNumbriVäärtus() == panustatav) {
-                //kui võitjanumber on sama mis panustatav, siis suurendab saldojääki
+                //Kui võitjanumber on sama mis panustatav, siis suurendab saldojääki
                 saldo.voit();
             } else saldo.kaotus();
 
             mängib = JOptionPane.showInputDialog(null, "Kas soovid edasi mängida? ", "jah/ei").equals("jah");
-            //küsib kas soovid uuele ringile minna
+            //Küsib kas soovid uuele ringile minna
         }
         JOptionPane.showMessageDialog(null, "Lahkusid kasiinost, taskus: " + saldo.getsaldoJääk() + "€");
-        //lõpusõnum
+        //Lõpusõnum
 
     }
 }
