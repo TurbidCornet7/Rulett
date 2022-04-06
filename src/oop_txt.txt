@@ -1,0 +1,92 @@
+1. Karl Kristjan Tamm, Karl Väärtnõu
+
+2. Programm on mäng, täpsemalt rulett (kasiinomäng), ent veidi lihtsamal kujul. 
+Kasutaja saab sisestada saldo, panuse ning numbri mille peale ta panustab, ning vastavalt
+kas mängija võidab või kaotab, korrigeeritakse tema saldot. Kui panus ületab
+saadaval olevaid vahendeid ja/või raha on täiesti otsas, siis enam ilmselgelt panustada
+ei saa. Kui mängida järjest sama nn laua taga (ehk vahepeal ei vastata pop-upi,
+et ei soovita edasi mängida), siis uut keerutust alustatakse eelmisest võidunumbrist.
+Kui mängija võidab, st et tema panustatud number osutus võidunumbriks, lisatakse
+saldole 35 kordne panus, kaotades lahutatakse saldost lihtsalt panus maha. 
+Tegu on lihtsustatud rulett, sest tegime hetkel ainult, et saab numbritele panustada ning
+võidukordaja on alati 35. Tegelikkuses saab veel lisaks individuaalnumbritele panustada
+ka värvidele, mille võidukordaja on 2. Ent selle jätsime hetkel tegemata.
+Kasutusjuhis: 
+Käivitage programm ning jälgige ilmnevaid kastikesi, kõik on ette öeldud mida teha saab,
+mida tegema peab jne.
+
+3. Peaklass:
+
+Peaklassis luuakse klassi Ruletiratas objekt (ehk luuaksegi konkreetse mängu ratas)
+ning saldo objekt, mis on sisuliselt mängija rahakott.
+Töötab mäng while Tsükli alusel. Küsitakse mängija raha ning mäng lükatakse käima.
+Kui raha ei ole, enam lauda keerutada ei saa. Kui aga raha on, siis küsitakse
+panustatavat summat, panustatavat numbrit. Kontrollitakse, kas selline number on üldse laual,
+seejärel kui on, keerutatakse lauda. (Keerutamise loogika kirjeldus on ruletiratta klassi juures)
+Kui võitjanumber osutuks samaks, mis kasutaja valis, siis fikseeritakse võit ning
+tehakse vastav muudatus Saldos. Kui kaotati, siis saldo väheneb panustatud summa võrra.
+Peale igat keerutust küsitakse, kas soovitakse veel mängija, kui jah, siis uus keerutus
+algab eelmisest võidunumbrist. Kui vastatakse ei, siis öeldakse, et lahkusite kasiinost
+ning kuvatakse ekraanil summa, mis rahakotti veel alles jäi.
+
+Ruletinumber: Tegime sedasi, et ruletiratas ei oleks lihtsalt jada numbritega.
+Ruletinumber on isend, mis koosneb siis numbrilisest väärtusest ja värvist, nagu
+ruletis ikka on.
+toString meetodiga anname ruletinumbrile värvi, vastavalt sellele, kas selle värv on
+konstruktoris määratud kas r(roheline), p(punane) või m(must). toString on vaja,
+et hiljem ekraanile numbreid ilusti kuvada.
+Lisaks on veel oleks getNumbriVäärtus, et kontrollida peaklassis võitu.
+getVärv on mõeldud tulevikuks, kui lisada mängu veel värvile panustamine, mille antud hetkel
+jätsime välja.
+
+Ruletiratas:
+Ruletiratas on kaks isendivälja - List Ruletinumbritest, mis ongi teoorias kogu
+ruletiratas ühes jadas, ning indeks, et elemente väljastada ekraanile.
+
+Ruletiratta konstruktor on parameetriteta, genereeritakse tsükli abil kogu ruletiratas,
+kus on arvud 0 - 35: kui arv on 0, siis ta värv on roheline, kui arv on paaris, on
+tegu punase ruletinumbriga, ning kui arv on paaritu, siis on tegu musta ruletinumbriga.
+
+Kõige tähtsam meetod on veereta():
+Genereeritakse arv 50-100 vahel, mis on sisuliselt et mitu veeretust/spini tehakse.
+Reaalsuses tähendab see meil, et mitu korda jada 7-st osahulka liigutatakse koguaeg 1 võrra
+edasi.
+Läbi jäägiga jagamise loogika arvutame välja uue indeksi kui peaks hakkama elemente ruletiratta
+algusest võtma, ning kuvame neid ekraanile. Et see näeks välja nagu justkui
+animateeritud, oleme lisanud ka Thread.sleepi, et tunduks reaalsem.
+Lisaks prindime ka iga rea järel võidutila (ekraanil kõige vasakpoolsema numbri juures),
+et näidata, millise elemendi juures hetkel võiduvõimalus on.
+Lõpuks meetod tagastab ka võidunumbri.
+
+Saldo: 
+Mängija rahakott, isendiväljadega saldo ja panuse jaoks.
+Setterid ja getterid on vajalikud, et peaklassis saldoga toimetada.
+setPanus fikseerib panuse (kui raha selleks on) ning kohe juba võtab raha saldost maha.
+Meetod() kaotus kuvab ekraanile, et panus kaotati ära, kui võidunumber ei osutunud panustatuks.
+voit() lisab saldole 35 kordse panuse summa ning kuvab, kui palju võideti. Samuti
+pannakse panus 0, et järgmisel mängukorral uuesti alustada.
+
+4. Kõigepealt arutlesime erinevate ideede vahel, jälgides, kas projekti annab mõistlikult
+vastavalt tingimustele teha. Jõudsime ruletiratta juurde, mis tundub vahva mõte
+ning järgmine etapp oligi lihtsalt tegemine - tegime paari tunniga kogu asja jutti ära.
+Rühmaliikmed osalesid võrdselt, olime terve tegemise aja koos.
+
+5. Ajakulu kogu projekti peale oli 3-4 tundi, koos idee otsimise ja realiseerimisega.
+Karl Väärtnõu tegi peaklassi ja ruletiratta, Karl Kristjan Tamm tegi ruletinumbri ja saldo.
+Koodi lõpuks kommenteeris Karl Väärtnõu ning antud dokumendi koostas Karl Kristjan Tamm.
+
+6. Tegemise muredeks oli ehk kuidas ilusti seda nn veeretamise effekti konsoolis kuvada,
+samuti ei osanud enne projekti javas kasutada värvilist teksti. 
+
+7. Arvame, et lõpptulemus näeb konsoolis suht vahva välja, arendamist vajab mäng ise - 
+peaksime lisama võimaluse panustada numbritele, mis hetkel välja jäi. Lisaks
+oleks võinud ka nn "võidutila" panna laua keskele, aga hetkel jätsime selle vasakusse
+äärde, sest tila keskel nõuab keerulisemat loogikat. Aga üleüldiselt
+kukkus kogu kood meie meelest suhteliselt puhtalt välja ning midagi üleliigset eriti ei ole.
+
+8. Lihtsalt pidevalt käivitasime, proovisime erinevaid numbreid ja erinevaid meetodeid
+eri viisi kirja panna. (nt ruletiratta veeretamist proovisime päris mitmel moel, ning jälgisime, kas ekraanile
+tuleb vigu). Kui kõik valmis sai mängisime ise paarkümmend minutit, jälgimaks taas,
+kas suuri vigu kuskil ilmneb. Igat meetodit, mis tegime, proovisime eri moodi kohe, nagu
+plaanisime neid rakendada. 
+

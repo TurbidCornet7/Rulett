@@ -8,7 +8,9 @@ public class RuletiNumber {
     }
 
     @Override
+
     public String toString() {
+        // väljastab numbri vastava värviga
         String ANSI_RESET = "\u001B[0m";
         String ANSI_BLACK = "\u001B[30m";
         String ANSI_RED = "\u001B[31m";
